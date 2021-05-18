@@ -19,6 +19,8 @@ public class Main {
         printMenu();
         
         String choice = input.nextLine();
+        String id;
+        String petDetails;
 
         switch (choice) {
           // Display all the pets
@@ -33,7 +35,7 @@ public class Main {
             // loop to add pets until user enters done
             while (true) {
               System.out.print("add pet (name, age): ");
-              String petDetails = input.nextLine();
+              petDetails = input.nextLine();
               if (petDetails.equalsIgnoreCase("done")) {
                 break;
               }
@@ -45,18 +47,39 @@ public class Main {
             break;
           
           case "3" :
+            pets.displayPets();
+            System.out.print("Enter the pet ID you would like to update: ");
+            id = input.nextLine();
+            System.out.print("Enter new name and new age:");
+            petDetails = input.nextLine();
+            String[] newPet = petDetails.split(" ");
+            String oldPetDetails = pets.getPets().get(Integer.parseInt(id)).toString();
+            pets.getPets().set(Integer.parseInt(id), new Pet(newPet[0], Integer.parseInt(newPet[1])));
+            System.out.println(oldPetDetails + " changed to " + petDetails + ".");
+            break;
+
+          case "4" :
+            pets.displayPets();
+            System.out.print("Enter the pet ID to remove: ");
+            id = input.nextLine();
+            petDetails = pets.getPets().get(Integer.parseInt(id)).toString();
+            pets.removePet(id);
+            System.out.println(petDetails + " is removed.");
+            break;
+
+          case "5" :
             System.out.print("Enter a name to search: ");
             String name = input.nextLine();
             pets.displayPets(name);
             break;
 
-          case "4" :
+          case "6" :
             System.out.print("Enter an age to search: ");
             int age = Integer.parseInt(input.nextLine());
             pets.displayPets(age);
             break;
           
-          case "5" :
+          case "7" :
             System.exit(1);
           default :
             System.out.println("Please enter a valid number");
@@ -70,9 +93,11 @@ public class Main {
       System.out.println("What would you like to do?");
       System.out.println("1) View all pets");
       System.out.println("2) Add more pets");
-      System.out.println("3) Search pets by name");
-      System.out.println("4) Search pets by age");
-      System.out.println("5) Exit Program");
+      System.out.println("3) Update an existing pet");
+      System.out.println("4) Remove an existing pet");
+      System.out.println("5) Search pets by name");
+      System.out.println("6) Search pets by age");
+      System.out.println("7) Exit Program");
       System.out.print("Your choice: ");
     }
 }

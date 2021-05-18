@@ -8,13 +8,21 @@ import java.util.ArrayList;
 
 public class PetCollection {
 
-  public ArrayList<Pet> pets = new ArrayList<>();
+  private ArrayList<Pet> pets = new ArrayList<>();
 
   public void addPet(Pet pet) {
     pets.add(pet);
   }
 
-  
+  public ArrayList<Pet> getPets() {
+    return pets;
+  }
+
+  public void removePet(String index) {
+    pets.remove(Integer.parseInt(index));
+  }
+
+
   // ------------------------
   // DIPLAY ALL PETS
   // ------------------------

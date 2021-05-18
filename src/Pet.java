@@ -30,4 +30,10 @@ public class Pet {
     this.age = age;
   }
 
+  @Override
+  public String toString() {
+    String pet = (this.name + " " + this.age);
+    return pet;
+  }
+
 }
