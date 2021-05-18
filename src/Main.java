@@ -43,7 +43,20 @@ public class Main {
             }
             System.out.println(counter + " pets added.");
             break;
+          
           case "3" :
+            System.out.print("Enter a name to search: ");
+            String name = input.nextLine();
+            pets.displayPets(name);
+            break;
+
+          case "4" :
+            System.out.print("Enter an age to search: ");
+            int age = Integer.parseInt(input.nextLine());
+            pets.displayPets(age);
+            break;
+          
+          case "5" :
             System.exit(1);
           default :
             System.out.println("Please enter a valid number");
@@ -57,7 +70,9 @@ public class Main {
       System.out.println("What would you like to do?");
       System.out.println("1) View all pets");
       System.out.println("2) Add more pets");
-      System.out.println("3) Exit Program");
+      System.out.println("3) Search pets by name");
+      System.out.println("4) Search pets by age");
+      System.out.println("5) Exit Program");
       System.out.print("Your choice: ");
     }
 }
