@@ -30,6 +30,10 @@ public class Main {
 
           // Add some pets
           case "2" :
+            if (pets.getPets().size() == 5) {
+              System.out.println("Error: Database is full.");
+              break;
+            }
             // set counter for tracking how many pets we add
             int counter = 0;
             // loop to add pets until user enters done
@@ -42,6 +46,10 @@ public class Main {
               String[] newPet = petDetails.split(" ");
               pets.addPet(new Pet(newPet[0], Integer.parseInt(newPet[1])));
               counter++;
+              if (pets.getPets().size() == 5) {
+                System.out.println("Note: The database is now full.");
+                break;
+              }
             }
             System.out.println(counter + " pets added.");
             break;
