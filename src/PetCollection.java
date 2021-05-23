@@ -1,4 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * PetCollection
@@ -89,5 +95,47 @@ public class PetCollection {
     // Prints footer
     System.out.printf("+----------------------+\n");
     System.out.printf("%d rows in set\n\n", pets.size());
+  }
+
+  // ---------------------------
+  // LOAD CONTENT FROM A TEXT FILE INTO A PETCOLLECTION OBJECT AND RETURN IT
+  // ---------------------------
+  public static PetCollection load(String fileName) throws IOException {
+    PetCollection petCollection = new PetCollection();
+    
+    File file = new File(fileName);
+    System.out.println(file.exists());
+    Scanner input = null;
+    try {
+      input = new Scanner(file);
+    }
+    catch (IOException e) {
+      return petCollection;
+    }
+
+    while (input.hasNextLine()) {
+      String line = input.nextLine();
+      String[] data = line.split(" ");
+      String name = data[0];
+      String age = data[1];
+      petCollection.addPet(new Pet(name, Integer.parseInt(age)));
+    }
+
+    input.close();
+
+    return petCollection;
+  }
+
+  // ---------------------------
+  // SAVE CONTENT FROM THE PETCOLLECTION OBJECT TO A TEXT FILE
+  // ---------------------------
+  public void save(String filename) throws FileNotFoundException {
+    File file = new File(filename);
+    PrintWriter output = new PrintWriter(file);
+    for (Pet pet : this.pets) {
+      output.println(pet.toString());
+    }
+
+    output.close();
   }
 }

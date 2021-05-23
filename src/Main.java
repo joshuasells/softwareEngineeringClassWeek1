@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
       // new PetCollection object
-      PetCollection pets = new PetCollection();
+      PetCollection pets = PetCollection.load("src/pets.txt");
       
       // loop for the main program
       while (true) {
@@ -80,6 +80,7 @@ public class Main {
             break;
           
           case "7" :
+            pets.save("src/pets.txt");
             System.exit(1);
           default :
             System.out.println("Please enter a valid number");
