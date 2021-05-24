@@ -44,6 +44,14 @@ public class Main {
                 break;
               }
               String[] newPet = petDetails.split(" ");
+              // check for 2 values
+              // check to make sure both values are name and age types
+              // check to make sure age input is valid
+              if (Integer.parseInt(newPet[1]) < 1 || Integer.parseInt(newPet[1]) > 20) {
+                System.out.println("Please enter between 1 and 20 for the pet's age.");
+                continue;
+              }
+              
               pets.addPet(new Pet(newPet[0], Integer.parseInt(newPet[1])));
               counter++;
               if (pets.getPets().size() == 5) {
