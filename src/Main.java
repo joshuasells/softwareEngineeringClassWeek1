@@ -44,14 +44,17 @@ public class Main {
                 break;
               }
               String[] newPet = petDetails.split(" ");
+
               // check for 2 values
+
               // check to make sure both values are name and age types
+
               // check to make sure age input is valid
               if (Integer.parseInt(newPet[1]) < 1 || Integer.parseInt(newPet[1]) > 20) {
                 System.out.println("Please enter between 1 and 20 for the pet's age.");
                 continue;
               }
-              
+
               pets.addPet(new Pet(newPet[0], Integer.parseInt(newPet[1])));
               counter++;
               if (pets.getPets().size() == 5) {
@@ -66,9 +69,21 @@ public class Main {
             pets.displayPets();
             System.out.print("Enter the pet ID you would like to update: ");
             id = input.nextLine();
-            System.out.print("Enter new name and new age:");
-            petDetails = input.nextLine();
-            String[] newPet = petDetails.split(" ");
+            String[] newPet = null;
+            
+            // check to make sure age input is valid
+            while (true) {
+              System.out.print("Enter new name and new age:");
+              petDetails = input.nextLine();
+              newPet = petDetails.split(" ");
+              
+              if (Integer.parseInt(newPet[1]) < 1 || Integer.parseInt(newPet[1]) > 20) {
+                System.out.println("Please enter between 1 and 20 for the pet's age.");
+                continue;
+              }
+              break;
+            }
+
             String oldPetDetails = pets.getPets().get(Integer.parseInt(id)).toString();
             pets.getPets().set(Integer.parseInt(id), new Pet(newPet[0], Integer.parseInt(newPet[1])));
             System.out.println(oldPetDetails + " changed to " + petDetails + ".");

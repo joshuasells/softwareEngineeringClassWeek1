@@ -1,4 +1,4 @@
-frank 5
+frank 2
 simon 1
 norah 2
 iris 5
