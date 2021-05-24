@@ -69,8 +69,19 @@ public class Main {
           
           case "3" :
             pets.displayPets();
-            System.out.print("Enter the pet ID you would like to update: ");
-            id = input.nextLine();
+            
+            while (true) {
+              System.out.print("Enter the pet ID you would like to update: ");
+              id = input.nextLine();
+
+              if (Integer.parseInt(id) > pets.getPets().size() - 1 || Integer.parseInt(id) < 0) {
+                System.out.println("Please enter a valid ID.");
+                continue;
+              }
+              break;
+            }
+
+
             String[] newPet = null;
             
             // validate input
@@ -100,8 +111,18 @@ public class Main {
 
           case "4" :
             pets.displayPets();
-            System.out.print("Enter the pet ID to remove: ");
-            id = input.nextLine();
+            
+            while (true) {
+              System.out.print("Enter the pet ID you would like to update: ");
+              id = input.nextLine();
+
+              if (Integer.parseInt(id) > pets.getPets().size() - 1 || Integer.parseInt(id) < 0) {
+                System.out.println("Please enter a valid ID.");
+                continue;
+              }
+              break;
+            }
+            
             petDetails = pets.getPets().get(Integer.parseInt(id)).toString();
             pets.removePet(id);
             System.out.println(petDetails + " is removed.");
