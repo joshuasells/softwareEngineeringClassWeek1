@@ -10,12 +10,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
       // new PetCollection object
       PetCollection pets = PetCollection.load("src/pets.txt");
+
+      // Create new scanner object
+      Scanner input = new Scanner(System.in);
       
       // loop for the main program
       while (true) {
-        // Create new scanner object
-        Scanner input = new Scanner(System.in);
-        
         printMenu();
         
         String choice = input.nextLine();
@@ -142,6 +142,7 @@ public class Main {
           
           case "7" :
             pets.save("src/pets.txt");
+            input.close();
             System.exit(1);
           default :
             System.out.println("Please enter a valid number");
